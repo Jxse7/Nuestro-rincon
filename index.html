@@ -135,6 +135,7 @@ section {
 </head>
 
 <body>
+  <button onclick="toggleMusic()">🎵 Música</button>
 
 <canvas id="stars"></canvas>
 
@@ -236,7 +237,20 @@ Proyecto Nosotros — v1.0 💗
 </footer>
 
 <script>
+function toggleMusic(){
+  let iframe = document.getElementById("musicFrame");
 
+  if(!iframe){
+    iframe = document.createElement("iframe");
+    iframe.id = "musicFrame";
+    iframe.width = "0";
+    iframe.height = "0";
+    iframe.src = "https://www.youtube.com/embed/AjGkbFqi67c?autoplay=1&loop=1&playlist=AjGkbFqi67c";
+    document.body.appendChild(iframe);
+  } else {
+    iframe.remove();
+  }
+}
 // INTRO FLOW
 function start(){
 document.getElementById("main").classList.remove("hidden");
@@ -297,17 +311,6 @@ ctx.fill();
 requestAnimationFrame(draw);
 }
 draw();
-
-<audio id="music" loop>
-  <source src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_c8b6b1b1b5.mp3?filename=romantic-ambient-110397.mp3" type="audio/mpeg">
-</audio>
-
-<script>
-document.addEventListener("click", () => {
-  const music = document.getElementById("music");
-  music.play();
-}, { once: true });
-</script>
-
+  </script>
 </body>
 </html>
