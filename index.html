@@ -131,11 +131,31 @@ section {
 .card {
   backdrop-filter: blur(10px);
 }
+
+  .music-btn{
+  margin-top: 20px;
+  padding: 12px 25px;
+  border: none;
+  border-radius: 30px;
+  background: linear-gradient(135deg, #ff4f88, #ff78a6);
+  color: white;
+  font-size: 16px;
+  cursor: pointer;
+  transition: 0.3s;
+  box-shadow: 0 0 15px rgba(255,79,136,0.4);
+}
+
+.music-btn:hover{
+  transform: scale(1.08);
+  box-shadow: 0 0 25px rgba(255,120,166,0.7);
+}
 </style>
 </head>
 
 <body>
-  <button onclick="toggleMusic()">🎵 Música</button>
+  <button class="music-btn" onclick="openMusic()">
+🎵 Escuchar “Lo Que Siento” – Cuco
+</button>
 
 <canvas id="stars"></canvas>
 
@@ -237,20 +257,49 @@ Proyecto Nosotros — v1.0 💗
 </footer>
 
 <script>
-function toggleMusic(){
-  let iframe = document.getElementById("musicFrame");
+  function openMusic(){
+  const win = window.open("", "_blank");
 
-  if(!iframe){
-    iframe = document.createElement("iframe");
-    iframe.id = "musicFrame";
-    iframe.width = "0";
-    iframe.height = "0";
-    iframe.src = "https://www.youtube.com/watch?v=D94triePAJE";
-    document.body.appendChild(iframe);
-  } else {
-    iframe.remove();
-  }
+  win.document.write(`
+    <html>
+    <head>
+      <title>Lo Que Siento – Cuco</title>
+      <style>
+        body{
+          margin:0;
+          background: black;
+          display:flex;
+          justify-content:center;
+          align-items:center;
+          height:100vh;
+          color:white;
+          font-family:Arial;
+          flex-direction:column;
+        }
+        iframe{
+          border-radius:15px;
+        }
+        p{
+          opacity:0.7;
+        }
+      </style>
+    </head>
+    <body>
+
+      <h2>🎵 Lo Que Siento – Cuco</h2>
+
+      <iframe width="360" height="215"
+      src="https://www.youtube.com/embed/AjGkbFqi67c?autoplay=1"
+      allow="autoplay">
+      </iframe>
+
+      <p>Se abrió la música en una ventana especial 💗</p>
+
+    </body>
+    </html>
+  `);
 }
+
 // INTRO FLOW
 function start(){
 document.getElementById("main").classList.remove("hidden");
